@@ -29,6 +29,8 @@ public class WechatController {
 
     @Value("${wechat.menuUrl}")
     private String menuUrl;
+    @Value("${wechat.menuUrl4Delete}")
+    private String menuUrl4Delete;
 
     @Value("${wechat.templateMsgUrl}")
     private String templateMsgUrl;
@@ -41,10 +43,12 @@ public class WechatController {
                          String timestamp ,
                          String nonce ,
                          String echostr) {
+        log.info("{}-{}-{}-{}",signature , timestamp , nonce , echostr);
         return echostr;
     }
 
     /**
+     *  cjs
      *  处理微信用户的交互行为
      * @param request 请求对象
      * */
@@ -130,13 +134,13 @@ public class WechatController {
                 "        {\n" +
                 "          \"type\":\"view\",\n" +
                 "          \"name\":\"智享搜搜乐\",\n" +
-                "          \"url\":\"https://www.baidu.com/index.php?tn=monline_3_dg\"\n" +
+                "          \"url\":\"https://www.baidu.com/\"\n" +
                 "        }]\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"name\":\"海量房源\",\n" +
                 "      \"type\":\"view\",\n" +
-                "      \"url\":\"http://nhkmdm.natappfree.cc/index.html\"\n" +
+                "      \"url\":\"http://3905.9heart.top/index.html\"\n" +
                 "    }]\n" +
                 "}\n";
 
@@ -145,6 +149,8 @@ public class WechatController {
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8") , paramStr);
             Request request = new Request.Builder().url(menuUrl + "?access_token=" + token).post(requestBody).build();
+            Request request4Delete = new Request.Builder().url(menuUrl4Delete + "?access_token=" + token).build();
+            client.newCall(request4Delete).execute();
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 System.out.println("创建菜单成功");

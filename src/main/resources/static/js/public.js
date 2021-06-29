@@ -1,4 +1,4 @@
-var baseUrl = "http://nhkmdm.natappfree.cc"
+var baseUrl = "http://3905.9heart.top"
 
 //写Cookie
 function addCookie(objName, objValue, objHours) {

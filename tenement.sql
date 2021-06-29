@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '唯一ID',
   `user_name` varchar(255) NOT NULL COMMENT '用户名',
-  `phone` varchar(255) NOT NULL COMMENT '联系方式',
+  `phone` varchar(255) COMMENT '联系方式',
   `open_id` varchar(255) NOT NULL COMMENT '微信的open_id',
   `img_src` varchar(255) NOT NULL COMMENT '用户头像',
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
